@@ -1,0 +1,23 @@
+<% include _layouts/header %>
+    <div class="container py-xl-4 py-lg-2">
+        <!-- py-xl-4 py-lg-2 -->
+        <div class="row">
+                
+            <% pages.forEach(function(p) { %>                    
+                <div class="wrapper product-box col-xs-12 col-sm-4 py-sm-5 py-4 "> 
+                    <!-- col-xs-12 col-md-4 py-sm-5 py-4                                 -->
+                    <a class="pa" href="/products/<%= p.category %>/<%= p.slug %>">
+                        <img style="margin-bottom: 15px;" class="pimage" src="/product_images/<%= p.id %>/<%= p.image %>" alt="">
+                    </a> <br>
+                        <h6 style="margin-bottom: 10px; font-weight: 200;;"><%= p.title %></h6> 
+                        <h6 style="margin-bottom: 10px; font-weight: 200;"><b># <%= parseFloat(p.price).toFixed(2) %> </b></h6> 
+                        <a style="margin-bottom: 10px;" class="button2 vd" href="/products/<%= p.category %>/<%= p.slug %>">View Details</a>
+                </div>                         
+                     
+            <% }); %>
+   
+            
+        </div>
+    </div>
+
+<% include _layouts/footer %>   

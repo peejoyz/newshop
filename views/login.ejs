@@ -1,0 +1,29 @@
+<% include _layouts/header2 %>
+
+<div class="container">
+
+    <h1><%= title %></h1>
+
+    <form method="POST" action="/users/login">
+        
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <input type="text" name="username" class="form-control" placeholder="Username">
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+
+        <button type="submit" class="btn btn-default">Log in</button>
+
+    </form>
+
+</div><br>
+
+You are not a registered user yet ? pls click here  
+<a style="margin-bottom: 8px" class="button2 vd" href="/users/register">Register</a>
+
+<% include _layouts/footer %>   
+

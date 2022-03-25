@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8">
+
+
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+    integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"">
+    <script src=" https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+    integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+    </script>
+  <link rel="stylesheet" href="/css/adminstyle.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+    integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+
+</head>
+
+<style>
+
+  #navbarcollapse {
+    /* margin-right: 20px; */
+    text-decoration: none;
+  }
+
+  #navbarcollapse1 ul li {
+    /* margin-right: 40px; */
+    text-decoration: none;
+    border: none;
+    font-size: 16px;
+    margin: 12px;
+
+  }
+
+  #navbarcollapse1 ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  #navbarcollapse1 ul li a:hover {
+    text-decoration: none;
+    color: azure;
+  }
+
+  #navbarcollapse ul li {
+    /* margin-right: 40px; */
+    text-decoration: none;
+    border: none;
+    font-size: 16px;
+    margin: 12px;
+
+  }
+
+  #navbarcollapse ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  #navbarcollapse ul li a:hover {
+    text-decoration: none;
+    border-radius: 75px;
+    background-color: #7c7c7c;
+    border: none;
+    color: azure;
+    font-weight: bolder;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.14) !important;
+
+  }
+
+  #car {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+</style>
+
+<body>
+  <nav role="navigation" class="navbar navbar-expand-sm navbar-light bg-dark rounded mb-3">
+    <a class="navbar-brand" href="/" style="color:#fff">DEJ STORE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarcollapse1" aria-controls="navbarcollapse1" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbarcollapse1" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+      </ul>
+
+      <ul class="navbar-nav navbar-right">
+        <li>
+          <a href="/cart/checkout">My Cart (
+            <% if (typeof cart !=="undefined" ) { %>
+              <%= cart.length %>
+                <% } else {%>
+                  0
+                  <%} %>
+
+                    )
+          </a>
+        </li>
+
+        <% if (user) { %>
+          <li><a href="/users/logout">Hi, <%= user.username %> (Logout) </a></li>
+          <% } else { %>
+            <li><a href="/users/register">Register</a></li>
+            <li><a href="/users/login">Log in</a></li>
+
+            <% } %>
+
+              <% if (user && user.admin==1) { %>
+                <li><a href="/admin/pages">Admin Area</a></li>
+                <% } %>
+
+
+
+      </ul>
+
+    </div>
+  </nav>
+ 
+  <!-- <h3>Categories</h3>
+  <div class="col-sm-3" style="display: inline-table;">
+    <div class="list-group">
+      <span class="list-group-item"><a href="/products">All products</a></span>
+      <% categories.forEach(function(c) { %>
+        <span class="list-group-item"><a href="/products/<%= c.slug %>">
+            <%= c.title %>
+          </a></span>
+        <% }); %>
+    </div>
+  </div> -->
+
+
+
+  <nav role="navigation" class="navbar navbar-expand-md navbar-light">
+    <h4 style="color: #999;">CATEGORIES</h4>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarcollapse"
+      aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbarcollapse" class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="list-group-item"><a href="/products">All PRODUCTS</a></li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <% categories.forEach(function(c) { %>
+          <li class="list-group-item"><a href="/products/<%= c.slug %>">
+              <%= c.title.toUpperCase() %>
+            </a></li>
+          <% }); %>
+      </ul>
+
+    </div>
+  </nav>
+
+    <%- messages('messages', locals) %>
+
+      <% if (errors) {%>
+        <% errors.forEach(function(error) { %>
+          <div class="alert alert-danger">
+            <%= error.msg %>
+          </div>
+          <% });%>
+            <% }%>
+
+              <div class="row">
+                <div class="col-sm-12">
+
+
+                </div>
+                <div class="col-xs-12 col-md-1"></div>
+                <div class="wrapper product-box col-xs-12 col-md-10">
+<!-- 
+                  <div class="row">
+                    <div class="col-xs-12 col-md-3">
+    
+    
+                    </div>
+                    <div class="col-xs-12 col-md-1"></div>
+                    <div class="col-xs-12 col-md-8"> -->

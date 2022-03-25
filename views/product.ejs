@@ -1,0 +1,43 @@
+<% include _layouts/header4viewdetails %>
+<div class="container py-xl-4 py-lg-2"> <!--  py-xl-4 py-lg-2 -->
+
+    <h1 class="page-header"><%= p.title %></h1>
+    <div style="margin-bottom: 15px;" class="row">
+        <div class="col-sm-6">  <!--  col-xs-12 col-md-5 py-sm-5 py-4 -->
+            <img style="margin-bottom: 10px;" class="spi" src="/product_images/<%= p.id %>/<%= p.image %>" alt="">
+            
+        </div>
+    
+        <div class="col-sm-6">  <!-- col-xs-12 col-md-7 -->
+            <p style="margin-bottom: 10px;"><%= p.desc %></p>
+            <p style="margin-bottom: 10px;">#<%= parseFloat(p.price).toFixed(2) %></p>
+            <% if (loggedIn) { %>
+                
+                <p><a class="button2" href="/cart/add/<%= p.slug %>">ADD TO CART</a></p>
+            <% } else { %>
+                <p>You must be logged in to purchase items.</p> <br>
+                <a style="margin-bottom: 15px" class="button2 vd" href="/users/login">Log in</a>
+            <% } %>
+            
+        </div>
+    </div>
+
+   
+
+    <div class="col-xs-12"> 
+        <ul class="gallery">
+            <% galleryImages.forEach(function(image) { %>
+            <% if (image != "thumbs") { %>
+            <li>
+                <a data-fancybox="gallery" href="/product_images/<%= p.id %>/gallery/<%= image %>">
+                    <img src="/product_images/<%= p.id %>/gallery/thumbs/<%= image %>" alt="">
+                </a>
+            </li>
+            <% } %>
+            <% });%>
+        </ul>
+    </div>
+
+</div>
+
+<% include _layouts/footer %>   
